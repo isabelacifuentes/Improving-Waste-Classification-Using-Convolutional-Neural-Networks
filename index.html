@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waste Classification CNN Prototype</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">CAP4630 Final Project</p>
+        <h1>Improving Waste Classification Using CNNs</h1>
+      </div>
+      <div class="student">
+        <span>Isabela Cifuentes</span>
+        <a href="mailto:icifuentes2022@fau.edu">icifuentes2022@fau.edu</a>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <section class="workspace" aria-label="Waste classifier">
+        <div class="upload-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Image Input</p>
+            <h2>Upload a waste item</h2>
+          </div>
+
+          <label class="drop-zone" for="imageInput" id="dropZone">
+            <input id="imageInput" type="file" accept="image/*" />
+            <span class="upload-icon" aria-hidden="true">+</span>
+            <strong>Choose or drop an image</strong>
+            <small>Plastic, metal, glass, paper, cardboard, food, or mixed trash</small>
+          </label>
+
+          <div class="sample-grid" aria-label="Sample waste types">
+            <button class="sample-chip" data-sample="plastic" type="button">Plastic</button>
+            <button class="sample-chip" data-sample="paper" type="button">Paper</button>
+            <button class="sample-chip" data-sample="metal" type="button">Metal</button>
+            <button class="sample-chip" data-sample="food" type="button">Food</button>
+          </div>
+        </div>
+
+        <div class="preview-panel">
+          <div class="image-frame">
+            <canvas id="previewCanvas" width="640" height="480" aria-label="Uploaded image preview"></canvas>
+            <div class="empty-state" id="emptyState">
+              <span></span>
+              <p>Image preview appears here</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="result-panel" aria-live="polite">
+          <div class="result-status" id="resultStatus">
+            <p class="eyebrow">Prediction</p>
+            <h2 id="predictionText">Waiting for image</h2>
+            <p id="predictionDetail">Upload an image to run preprocessing and classification.</p>
+          </div>
+
+          <div class="confidence-block">
+            <div class="confidence-label">
+              <span>Confidence</span>
+              <strong id="confidenceValue">0%</strong>
+            </div>
+            <div class="meter" aria-hidden="true">
+              <span id="confidenceBar"></span>
+            </div>
+          </div>
+
+          <dl class="feature-list">
+            <div>
+              <dt>Detected material</dt>
+              <dd id="materialValue">-</dd>
+            </div>
+            <div>
+              <dt>Preprocessing</dt>
+              <dd>224 x 224 resize, RGB normalization</dd>
+            </div>
+            <div>
+              <dt>Model behavior</dt>
+              <dd id="modelValue">Local CNN-style inference demo</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="method-band">
+        <div>
+          <p class="eyebrow">Workflow</p>
+          <h2>How the prototype classifies an item</h2>
+        </div>
+        <ol class="workflow">
+          <li>
+            <span>1</span>
+            <strong>Image upload</strong>
+            <p>The user provides a photo of one waste item.</p>
+          </li>
+          <li>
+            <span>2</span>
+            <strong>Preprocessing</strong>
+            <p>The image is resized and normalized for model input.</p>
+          </li>
+          <li>
+            <span>3</span>
+            <strong>Feature extraction</strong>
+            <p>Visual patterns such as color, brightness, and texture are analyzed.</p>
+          </li>
+          <li>
+            <span>4</span>
+            <strong>Classification</strong>
+            <p>The app returns recyclable or non-recyclable with confidence.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="project-notes">
+        <div>
+          <p class="eyebrow">Project Context</p>
+          <h2>Decision-support tool for recycling</h2>
+          <p>
+            This application demonstrates the interface and inference workflow for a CNN-based waste
+            classifier trained on categories similar to the TrashNet dataset. A production version can
+            replace the local demo logic with exported CNN weights from TensorFlow, Keras, or TensorFlow.js.
+          </p>
+        </div>
+        <div class="note-grid">
+          <article>
+            <strong>Recyclable</strong>
+            <p>Paper, cardboard, glass, metal, and most plastic containers.</p>
+          </article>
+          <article>
+            <strong>Non-recyclable</strong>
+            <p>Food waste, contaminated items, mixed trash, and low-confidence unknown objects.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
