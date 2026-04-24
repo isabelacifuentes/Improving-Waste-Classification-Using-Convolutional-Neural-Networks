@@ -1,0 +1,2 @@
+# Improving-Waste-Classification-Using-Convolutional-Neural-Networks
+This project investigates the problem of incorrectly classifying waste as recyclable or non-recyclable in the context of Artificial Intelligence. Existing approaches to this problem often face challenges such as human error, inconsistency, and difficulty identifying materials from appearance alone. In this project, I use CNN as a AI-based solution.
